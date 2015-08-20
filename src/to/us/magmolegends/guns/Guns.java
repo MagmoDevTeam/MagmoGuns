@@ -2,7 +2,7 @@ package to.us.magmolegends.guns;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Fireball;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,19 +23,18 @@ public class Guns extends JavaPlugin implements Listener {
 		
 		if (!(e.getItem().getType() == Material.DIAMOND_HOE)) return;
 		
-		Fireball f = e.getPlayer().launchProjectile(Fireball.class);
-		f.setIsIncendiary(false);
-		f.setYield(0);
+		Arrow f = e.getPlayer().launchProjectile(Arrow.class);
 	}
 	
 	@EventHandler
 	public void onEntityDamage(EntityDamageByEntityEvent e) {
-		if (e.getDamager() instanceof Fireball) {
-			Fireball f = (Fireball) e.getDamager();
+		if (e.getDamager() instanceof Arrow) {
+			Arrow f = (Arrow) e.getDamager();
 			if (f.getShooter() instanceof Player) {
 				Player shooter = (Player) f.getShooter();
 				if (shooter.getItemInHand().getType() == Material.DIAMOND_HOE) {
 					e.setDamage(10.0);
+					
 				}
 			}
 		}
